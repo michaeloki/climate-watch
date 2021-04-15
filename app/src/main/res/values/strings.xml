@@ -25,6 +25,5 @@
     <string name="maxTemp">Max Temp ˚%1$d C</string>
     <string name="refresh">Refresh</string>
     <string name="internetProblem">Please check your internet</string>
-
-
+    <string name="noSearchResults">No response from OpenWeather API,tap the refresh button</string>
 </resources>

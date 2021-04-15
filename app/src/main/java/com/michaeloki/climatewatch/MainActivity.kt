@@ -34,6 +34,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
 import com.michaeloki.climatewatch.network.GetAddressIntentService
+import com.michaeloki.climatewatch.network.NetworkStatus
 import com.michaeloki.climatewatch.utils.Constants
 import kotlinx.android.synthetic.main.list_item_weather.*
 import java.lang.Exception
@@ -118,14 +119,23 @@ open class MainActivity : AppCompatActivity() {
                     weatherCard.visibility = View.VISIBLE
                     networkError.visibility = View.GONE
                 } else {
-                    Snackbar.make(
-                        findViewById(android.R.id.content),
-                        getString(R.string.internetProblem),
-                        Snackbar.LENGTH_LONG
-                    )
-                        .show()
-                    weatherCard.visibility = View.GONE
-                    networkError.visibility = View.VISIBLE
+                    if (!NetworkStatus().internetConnectionAvailable(3000L)) {
+                        noSearchOutput.visibility = View.GONE
+                        networkError.visibility = View.VISIBLE
+                        return@observe Snackbar.make(
+                            findViewById(android.R.id.content),
+                            getString(R.string.internetProblem),
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    } else {
+                        noSearchOutput.visibility = View.VISIBLE
+                        networkError.visibility = View.GONE
+                        return@observe Snackbar.make(
+                            findViewById(android.R.id.content),
+                            getString(R.string.noSearchResults),
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             })
 
