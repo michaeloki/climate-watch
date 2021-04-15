@@ -19,6 +19,7 @@ To create an apk file,do these:
 Tech Decision
 I followed the MVVM architecture by adding an Activity, ActivityModel, Repository and API client. An intent service was used to update the app when there’s a location change. The intent service doesn't run on the same thread as the activity, hence, the app won't hang and the system resource won't be exhausted.
 Retrofit library was used to make the API calls while the POJO files in the models directory had the data structure for the openweather endpoint.
+Glide library was used to display the weather logo.
 
 UI test was done using Espresso and this can be found in the androidTest folder.
 Robolectric library was also used for creating the unit tests.
