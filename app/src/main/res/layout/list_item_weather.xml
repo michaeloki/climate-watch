@@ -7,61 +7,61 @@
     android:divider="#000000">
         <ImageView
             android:id="@+id/weatherIcon"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:paddingStart="@dimen/normal_padding"
+            android:paddingEnd="@dimen/normal_padding"
+            android:layout_width="@dimen/climate_top_margin"
+            android:layout_height="@dimen/climate_top_margin"
             android:src="@drawable/location"
             android:contentDescription="@string/weatherIcon" />
         <TextView
             android:id="@+id/city_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/normal_padding"
+            android:layout_marginRight="@dimen/normal_padding"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/climate_publisher_text_size"
             />
         <TextView
             android:id="@+id/maxTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/normal_padding"
+            android:layout_marginRight="@dimen/normal_padding"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/climate_publisher_text_size"
             />
         <TextView
             android:id="@+id/minTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/normal_padding"
+            android:layout_marginRight="@dimen/normal_padding"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/climate_publisher_text_size"
             />
         <TextView
             android:id="@+id/pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/normal_padding"
+            android:layout_marginRight="@dimen/normal_padding"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/climate_publisher_text_size"
             />
         <TextView
             android:id="@+id/humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/normal_padding"
+            android:layout_marginRight="@dimen/normal_padding"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/climate_publisher_text_size"
             />
 
 

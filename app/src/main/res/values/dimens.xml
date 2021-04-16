@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="climate_image_height">250dp</dimen>
+    <dimen name="climate_top_margin">150dp</dimen>
     <dimen name="climate_title_text_size">20sp</dimen>
+    <dimen name="climate_publisher_text_size_15sp">15sp</dimen>
     <dimen name="climate_publisher_text_size">16sp</dimen>
+    <dimen name="climate_publisher_text_size_22sp">22sp</dimen>
     <dimen name="recycler_loading_view_height">80dp</dimen>
+    <dimen name="normal_padding_8dp">8dp</dimen>
+    <dimen name="normal_padding_5dp">5dp</dimen>
+    <dimen name="normal_padding">10dp</dimen>
+    <dimen name="normal_padding_dp">15dp</dimen>
+    <dimen name="normal_padding_20dp">20dp</dimen>
+    <dimen name="normal_padding_48dp">48dp</dimen>
 </resources>
