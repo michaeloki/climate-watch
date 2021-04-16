@@ -320,10 +320,8 @@ open class MainActivity : AppCompatActivity() {
             grantResults[0] == PackageManager.PERMISSION_GRANTED -> // Permission granted.
                 getAddress()
             else -> // Permission denied.
-
                 showSnackbar(R.string.permission_denied_explanation, R.string.settings,
-                        {
-                            // Build intent that displays the App settings screen.
+                        View.OnClickListener {
                             val intent = Intent().apply {
                                 action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                                 data = Uri.fromParts("package", "com.michaeloki.climatewatch", null)
