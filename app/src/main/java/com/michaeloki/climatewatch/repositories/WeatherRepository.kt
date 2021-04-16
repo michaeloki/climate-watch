@@ -9,8 +9,8 @@ import com.michaeloki.climatewatch.network.ApiClient
 
 class WeatherRepository private constructor() {
     private var mApiClient: ApiClient = ApiClient.getInstance()
-    private  var mLat: Double = 0.0
-    private  var mLon: Double = 0.0
+    private var mLat: Double = 0.0
+    private var mLon: Double = 0.0
     private lateinit var mAPPID: String
     private lateinit var mUnits: String
 
@@ -25,12 +25,12 @@ class WeatherRepository private constructor() {
         }
 
 
-    fun searchWeatherApi(lat: Double,lon: Double,APPID: String, units: String) {
+    fun searchWeatherApi(lat: Double, lon: Double, APPID: String, units: String) {
         mLat = lat
         mLon = lon
         mAPPID = APPID
         mUnits = units
-        mApiClient.searchWeatherApi(lat,lon,APPID, units)
+        mApiClient.searchWeatherApi(lat, lon, APPID, units)
     }
 
 

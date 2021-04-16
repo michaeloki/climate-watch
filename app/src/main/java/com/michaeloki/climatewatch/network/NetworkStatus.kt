@@ -6,17 +6,17 @@ import java.util.concurrent.*
 
 class NetworkStatus {
 
-     fun internetConnectionAvailable(timeOut: Long): Boolean {
+    fun internetConnectionAvailable(timeOut: Long): Boolean {
         var inetAddress: InetAddress? = null
         try {
             val future: Future<InetAddress?>? =
-                Executors.newSingleThreadExecutor().submit(Callable<InetAddress?> {
-                    try {
-                        InetAddress.getByName("google.com")
-                    } catch (e: UnknownHostException) {
-                        null
-                    }
-                })
+                    Executors.newSingleThreadExecutor().submit(Callable<InetAddress?> {
+                        try {
+                            InetAddress.getByName("google.com")
+                        } catch (e: UnknownHostException) {
+                            null
+                        }
+                    })
             if (future != null) {
                 inetAddress = future.get(timeOut, TimeUnit.MILLISECONDS)
             }

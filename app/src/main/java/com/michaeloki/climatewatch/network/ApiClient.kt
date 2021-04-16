@@ -30,11 +30,11 @@ class ApiClient private constructor() {
 
 
     fun searchWeatherApi(lat: Double, lon: Double, APPID: String, units: String) {
-        mRetrieveWeatherRunnable = RetrieveWeatherRunnable(lat, lon,APPID,units )
+        mRetrieveWeatherRunnable = RetrieveWeatherRunnable(lat, lon, APPID, units)
         val handler = AppExecutors.get().networkIO().submit(mRetrieveWeatherRunnable)
 
         AppExecutors.get().networkIO()
-            .schedule({ handler.cancel(true) }, NETWORK_TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
+                .schedule({ handler.cancel(true) }, NETWORK_TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
     }
 
 
@@ -58,11 +58,11 @@ class ApiClient private constructor() {
                 if (response.code() == 200) {
                     weatherList = ArrayList((response.body() as WeatherModel).weather)
                     try {
-                       mWeather.postValue(weatherList)
-                    } catch (e:Exception) {
+                        mWeather.postValue(weatherList)
+                    } catch (e: Exception) {
                         e.printStackTrace()
                     } finally {
-                        if(mWeather.value==null) {
+                        if (mWeather.value == null) {
                             mWeather.postValue(weatherList)
                         }
                         mWeatherConditions.postValue((response.body() as WeatherModel).main)
@@ -78,10 +78,10 @@ class ApiClient private constructor() {
 
         private fun getWeather(lat: Double, lon: Double, APPID: String, units: String): Call<WeatherModel>? {
             return ServiceGenerator.weatherQueryApi.getWeatherInfo(
-                lat,
-                lon,
-                APPID,
-                units
+                    lat,
+                    lon,
+                    APPID,
+                    units
             )
         }
     }

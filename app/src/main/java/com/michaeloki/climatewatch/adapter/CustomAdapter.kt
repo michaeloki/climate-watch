@@ -19,12 +19,12 @@ class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     @NonNull
     override fun onCreateViewHolder(
-        @NonNull viewGroup: ViewGroup,
-        i: Int
+            @NonNull viewGroup: ViewGroup,
+            i: Int
     ): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(
-            R.layout.list_item_weather,
-            viewGroup, false
+                R.layout.list_item_weather,
+                viewGroup, false
         )
         return CustomViewHolder(view)
     }
@@ -90,11 +90,11 @@ class CustomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
 
         val requestOptions = RequestOptions()
-            .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_launcher_background)
         Glide.with(viewHolder.itemView.context)
-            .setDefaultRequestOptions(requestOptions)
-            .load(weatherIconData)
-            .into((viewHolder as CustomViewHolder).imageView)
+                .setDefaultRequestOptions(requestOptions)
+                .load(weatherIconData)
+                .into((viewHolder as CustomViewHolder).imageView)
 
 
         val title = viewHolder.title

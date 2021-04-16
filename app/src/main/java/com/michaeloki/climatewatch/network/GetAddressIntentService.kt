@@ -10,7 +10,6 @@ import com.michaeloki.climatewatch.R
 import com.michaeloki.climatewatch.utils.Constants
 
 
-
 class GetAddressIntentService : IntentService("FetchAddress") {
 
     private val TAG = "GetAddressService"
@@ -36,8 +35,8 @@ class GetAddressIntentService : IntentService("FetchAddress") {
             return
         }
 
-            sendResultToReceiver(Constants.SUCCESS_RESULT,location.latitude,location.longitude
-                )
+        sendResultToReceiver(Constants.SUCCESS_RESULT, location.latitude, location.longitude
+        )
     }
 
     private fun sendResultToReceiver(resultCode: Int, lat: Double, lon: Double) {

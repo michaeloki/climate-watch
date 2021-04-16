@@ -8,9 +8,10 @@ class AppExecutors {
     fun networkIO(): ScheduledExecutorService {
         return mNetworkIO
     }
+
     companion object {
-        private lateinit var instance:AppExecutors
-        fun get():AppExecutors {
+        private lateinit var instance: AppExecutors
+        fun get(): AppExecutors {
             instance = AppExecutors()
             return instance
         }

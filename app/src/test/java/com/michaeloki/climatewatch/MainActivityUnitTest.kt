@@ -27,9 +27,9 @@ class MainActivityUnitTest {
     @Throws(Exception::class)
     fun setUp() {
         activity = Robolectric.buildActivity(MainActivity::class.java)
-            .create()
-            .resume()
-            .get()
+                .create()
+                .resume()
+                .get()
     }
 
     @Test
@@ -50,7 +50,7 @@ class MainActivityUnitTest {
     fun buttonClickShouldShowCityName() {
         val button: Button = activity!!.findViewById<View>(R.id.refreshButton) as Button
         button.performClick()
-       val cityName = Shadows.shadowOf(activity).contentView.currentCity.isVisible
+        val cityName = Shadows.shadowOf(activity).contentView.currentCity.isVisible
         assertNotNull(cityName)
     }
 
@@ -76,6 +76,6 @@ class MainActivityUnitTest {
 
     @Test
     fun checkIntentResultCode() {
-        assertNotNull( Shadows.shadowOf(activity).resultCode )
+        assertNotNull(Shadows.shadowOf(activity).resultCode)
     }
 }

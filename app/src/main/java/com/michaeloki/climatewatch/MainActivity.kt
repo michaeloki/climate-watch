@@ -65,7 +65,7 @@ open class MainActivity : AppCompatActivity() {
         mRecyclerView = findViewById(R.id.list_locations)
 
         mMainActivityViewModel =
-            ViewModelProvider(this@MainActivity).get(MainActivityViewModel::class.java)
+                ViewModelProvider(this@MainActivity).get(MainActivityViewModel::class.java)
 
         addressOutput = ""
         updateValuesFromBundle(savedInstanceState)
@@ -82,9 +82,9 @@ open class MainActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         val mLocationRequest = LocationRequest.create()
-            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-            .setInterval(10 * 1000)
-            .setFastestInterval(1 * 1000)
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10 * 1000)
+                .setFastestInterval(1 * 1000)
         checkPermissions()
     }
 
@@ -101,7 +101,7 @@ open class MainActivity : AppCompatActivity() {
         LOCATION_ADDRESS_KEY.let {
             if (savedInstanceState.keySet().contains(it)) {
                 addressOutput = savedInstanceState.getString(it).toString()
-                Log.i(TAG,"=====>>>>>:::: $addressOutput")
+                Log.i(TAG, "=====>>>>>:::: $addressOutput")
             }
         }
     }
@@ -109,53 +109,52 @@ open class MainActivity : AppCompatActivity() {
 
     private fun subscribeObservers() {
         mMainActivityViewModel.weather.observe(this,
-            { weather ->
-                if (weather != null) {
-                    if (mMainActivityViewModel.isViewingWeather()) {
-                        mAdapter.setWeather(weather)
-                        loadingIndicator.visibility = View.INVISIBLE
-                        mMainActivityViewModel.setIsQueryingWeather(false)
-                    }
-                    weatherCard.visibility = View.VISIBLE
-                    networkError.visibility = View.GONE
-                } else {
-                    if (!NetworkStatus().internetConnectionAvailable(3000L)) {
-                        noSearchOutput.visibility = View.GONE
-                        networkError.visibility = View.VISIBLE
-                        return@observe Snackbar.make(
-                            findViewById(android.R.id.content),
-                            getString(R.string.internetProblem),
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    } else {
-                        noSearchOutput.visibility = View.VISIBLE
-                        networkError.visibility = View.GONE
-                        return@observe Snackbar.make(
-                            findViewById(android.R.id.content),
-                            getString(R.string.noSearchResults),
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-                }
-            })
-
-
-        mMainActivityViewModel.weatherData.
-        observe(this,
-            { weatherData ->
-                if (weatherData != null) {
-                    if (mMainActivityViewModel.isViewingWeather()) {
-                        mAdapter.setWeatherData(weatherData)
-                        mMainActivityViewModel.setIsQueryingWeather(false)
-                        try {
-                            currentCity.text = cityAddress
-                        } catch(e:Exception){
-                            println(":::::YES show me here $cityAddress !!")
+                { weather ->
+                    if (weather != null) {
+                        if (mMainActivityViewModel.isViewingWeather()) {
+                            mAdapter.setWeather(weather)
+                            loadingIndicator.visibility = View.INVISIBLE
+                            mMainActivityViewModel.setIsQueryingWeather(false)
                         }
-
+                        weatherCard.visibility = View.VISIBLE
+                        networkError.visibility = View.GONE
+                    } else {
+                        if (!NetworkStatus().internetConnectionAvailable(3000L)) {
+                            noSearchOutput.visibility = View.GONE
+                            networkError.visibility = View.VISIBLE
+                            return@observe Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    getString(R.string.internetProblem),
+                                    Snackbar.LENGTH_LONG
+                            ).show()
+                        } else {
+                            noSearchOutput.visibility = View.VISIBLE
+                            networkError.visibility = View.GONE
+                            return@observe Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    getString(R.string.noSearchResults),
+                                    Snackbar.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
-            })
+                })
+
+
+        mMainActivityViewModel.weatherData.observe(this,
+                { weatherData ->
+                    if (weatherData != null) {
+                        if (mMainActivityViewModel.isViewingWeather()) {
+                            mAdapter.setWeatherData(weatherData)
+                            mMainActivityViewModel.setIsQueryingWeather(false)
+                            try {
+                                currentCity.text = cityAddress
+                            } catch (e: Exception) {
+                                println(":::::YES show me here $cityAddress !!")
+                            }
+
+                        }
+                    }
+                })
     }
 
 
@@ -184,7 +183,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     private inner class AddressResultReceiver internal constructor(
-        handler: Handler
+            handler: Handler
     ) : ResultReceiver(handler) {
 
         override fun onReceiveResult(resultCode: Int, resultData: Bundle) {
@@ -201,30 +200,31 @@ open class MainActivity : AppCompatActivity() {
     }
 
     private fun showSnackbar(
-        mainTextStringId: Int,
-        actionStringId: Int,
-        listener: View.OnClickListener
+            mainTextStringId: Int,
+            actionStringId: Int,
+            listener: View.OnClickListener
     ) {
         Snackbar.make(findViewById(android.R.id.content), getString(mainTextStringId),
-            Snackbar.LENGTH_INDEFINITE)
-            .setAction(getString(actionStringId), listener)
-            .show()
+                Snackbar.LENGTH_INDEFINITE)
+                .setAction(getString(actionStringId), listener)
+                .show()
     }
 
     private fun checkPermissions() {
 
         if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            != PackageManager.PERMISSION_GRANTED
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                != PackageManager.PERMISSION_GRANTED
         ) {
-             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                ),
-                REQUEST_PERMISSIONS_REQUEST_CODE
+            ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                    ),
+                    REQUEST_PERMISSIONS_REQUEST_CODE
             )
         } else {
             getAddress()
@@ -241,23 +241,24 @@ open class MainActivity : AppCompatActivity() {
 
 
     private fun getAddress() {
-       if (ActivityCompat.checkSelfPermission(
-               this,
-               Manifest.permission.ACCESS_FINE_LOCATION
-           ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-               this,
-               Manifest.permission.ACCESS_COARSE_LOCATION
-           ) != PackageManager.PERMISSION_GRANTED
-       ) {
-           ActivityCompat.requestPermissions(
-               this,
-               arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                   Manifest.permission.ACCESS_COARSE_LOCATION,
-               ),
-               REQUEST_PERMISSIONS_REQUEST_CODE
-           )
-       }
-       fusedLocationClient?.lastLocation?.addOnSuccessListener(this, OnSuccessListener { location ->
+        if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                    ),
+                    REQUEST_PERMISSIONS_REQUEST_CODE
+            )
+        }
+        fusedLocationClient?.lastLocation?.addOnSuccessListener(this, OnSuccessListener { location ->
             if (location == null) {
                 Log.i(TAG, "::::::onSuccess:null")
                 return@OnSuccessListener
@@ -265,52 +266,52 @@ open class MainActivity : AppCompatActivity() {
 
             lastLocation = location
 
-           val geocoder = Geocoder(this, Locale.getDefault())
+            val geocoder = Geocoder(this, Locale.getDefault())
 
-           var addresses: List<Address> = emptyList()
+            var addresses: List<Address> = emptyList()
 
-           try {
-               addresses = geocoder.getFromLocation(
-                   location.latitude,
-                   location.longitude,
-                   1
-               )
-               cityAddress = addresses[0].locality
+            try {
+                addresses = geocoder.getFromLocation(
+                        location.latitude,
+                        location.longitude,
+                        1
+                )
+                cityAddress = addresses[0].locality
 
-           } catch (e:Exception) {
-               e.printStackTrace()
-           }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
 
-           if(lastLocation!!.longitude!=null) {
-               loadingIndicator.visibility = View.VISIBLE
-               try {
-                   mMainActivityViewModel.setIsQueryingWeather(true)
-                   mMainActivityViewModel.searchWeatherApi(
-                       lastLocation!!.latitude,
-                       lastLocation!!.longitude, Constants.API_KEY, Constants.units
-                   )
-               } finally {
-                   refreshButton.visibility = View.VISIBLE
-               }
-           }
+            if (lastLocation!!.longitude != null) {
+                loadingIndicator.visibility = View.VISIBLE
+                try {
+                    mMainActivityViewModel.setIsQueryingWeather(true)
+                    mMainActivityViewModel.searchWeatherApi(
+                            lastLocation!!.latitude,
+                            lastLocation!!.longitude, Constants.API_KEY, Constants.units
+                    )
+                } finally {
+                    refreshButton.visibility = View.VISIBLE
+                }
+            }
 
             if (!Geocoder.isPresent()) {
                 Snackbar.make(findViewById<View>(android.R.id.content),
-                    R.string.no_geocoder_available, Snackbar.LENGTH_LONG).show()
+                        R.string.no_geocoder_available, Snackbar.LENGTH_LONG).show()
                 return@OnSuccessListener
             }
 
             if (addressRequested) startIntentService()
-        })?.addOnFailureListener(this) {
-                e -> Log.i(TAG, "=====>>>>>getLastLocation:onFailure", e)
+        })?.addOnFailureListener(this) { e ->
+            Log.i(TAG, "=====>>>>>getLastLocation:onFailure", e)
         }
     }
 
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         Log.i(TAG, "onRequestPermissionResult")
 
@@ -324,15 +325,15 @@ open class MainActivity : AppCompatActivity() {
             else -> // Permission denied.
 
                 showSnackbar(R.string.permission_denied_explanation, R.string.settings,
-                    View.OnClickListener {
-                        // Build intent that displays the App settings screen.
-                        val intent = Intent().apply {
-                            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                            data = Uri.fromParts("package", "com.michaeloki.climatewatch", null)
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        }
-                        startActivity(intent)
-                    })
+                        View.OnClickListener {
+                            // Build intent that displays the App settings screen.
+                            val intent = Intent().apply {
+                                action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                                data = Uri.fromParts("package", "com.michaeloki.climatewatch", null)
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            startActivity(intent)
+                        })
         }
     }
 
@@ -344,24 +345,24 @@ open class MainActivity : AppCompatActivity() {
 
         builder.setMessage(getString(R.string.exitQuestion))
 
-            builder.setPositiveButton(
+        builder.setPositiveButton(
                 getString(R.string.YES_TEXT)
-            ) { _, _ -> finish() }
+        ) { _, _ -> finish() }
 
-            builder.setNegativeButton(
+        builder.setNegativeButton(
                 getString(R.string.NO_TEXT)
-            ) { _, _ ->
-                Toast.makeText(
+        ) { _, _ ->
+            Toast.makeText(
                     applicationContext, resources.getString(R.string.stayTuned),
                     Toast.LENGTH_SHORT
-                ).show()
-            }
+            ).show()
+        }
 
 
         builder.setNeutralButton(getString(R.string.CANCEL_TEXT)) { _, _ ->
             Toast.makeText(
-                applicationContext, resources.getString(R.string.stayTuned),
-                Toast.LENGTH_SHORT
+                    applicationContext, resources.getString(R.string.stayTuned),
+                    Toast.LENGTH_SHORT
             ).show()
         }
         val dialog: AlertDialog = builder.create()
