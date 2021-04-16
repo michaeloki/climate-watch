@@ -3,7 +3,6 @@ package com.michaeloki.climatewatch.repositories
 import androidx.lifecycle.LiveData
 import com.michaeloki.climatewatch.model.Main
 import com.michaeloki.climatewatch.model.Weather
-import com.michaeloki.climatewatch.model.WeatherModel
 import com.michaeloki.climatewatch.network.ApiClient
 
 

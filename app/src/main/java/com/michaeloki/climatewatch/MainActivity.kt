@@ -7,12 +7,10 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.ResultReceiver
 import android.provider.Settings
-import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -23,21 +21,20 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.michaeloki.climatewatch.adapter.CustomAdapter
-import com.michaeloki.climatewatch.viewmodel.MainActivityViewModel
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_item_weather.view.*
-import java.util.*
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
+import com.michaeloki.climatewatch.adapter.CustomAdapter
 import com.michaeloki.climatewatch.network.GetAddressIntentService
 import com.michaeloki.climatewatch.network.NetworkStatus
 import com.michaeloki.climatewatch.utils.Constants
+import com.michaeloki.climatewatch.viewmodel.MainActivityViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item_weather.*
-import java.lang.Exception
+import kotlinx.android.synthetic.main.list_item_weather.view.*
+import java.util.*
 
 
 open class MainActivity : AppCompatActivity() {
@@ -165,7 +162,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        savedInstanceState ?: return
+        savedInstanceState
         with(savedInstanceState) {
             putBoolean(ADDRESS_REQUESTED_KEY, addressRequested)
             putString(LOCATION_ADDRESS_KEY, addressOutput)
@@ -182,7 +179,7 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-    private inner class AddressResultReceiver internal constructor(
+    private inner class AddressResultReceiver(
             handler: Handler
     ) : ResultReceiver(handler) {
 
@@ -296,7 +293,7 @@ open class MainActivity : AppCompatActivity() {
             }
 
             if (!Geocoder.isPresent()) {
-                Snackbar.make(findViewById<View>(android.R.id.content),
+                Snackbar.make(findViewById(android.R.id.content),
                         R.string.no_geocoder_available, Snackbar.LENGTH_LONG).show()
                 return@OnSuccessListener
             }
@@ -325,7 +322,7 @@ open class MainActivity : AppCompatActivity() {
             else -> // Permission denied.
 
                 showSnackbar(R.string.permission_denied_explanation, R.string.settings,
-                        View.OnClickListener {
+                        {
                             // Build intent that displays the App settings screen.
                             val intent = Intent().apply {
                                 action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
