@@ -343,25 +343,11 @@ open class MainActivity : AppCompatActivity() {
         builder.setTitle(getString(R.string.app_name))
 
         builder.setMessage(getString(R.string.exitQuestion))
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            builder.setPositiveButton(
-                Html.fromHtml("<font color='#FFFFFF'>YES</font>", 0)
-            ) { _, _ -> finish() }
-        } else {
+
             builder.setPositiveButton(
                 getString(R.string.YES_TEXT)
             ) { _, _ -> finish() }
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            builder.setNegativeButton(
-                Html.fromHtml("<font color='#FFFFFF'>NO</font>", 0)
-            ) { _, _ ->
-                Toast.makeText(
-                    applicationContext, resources.getString(R.string.stayTuned),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        } else {
+
             builder.setNegativeButton(
                 getString(R.string.NO_TEXT)
             ) { _, _ ->
@@ -370,7 +356,7 @@ open class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }
+
 
         builder.setNeutralButton(getString(R.string.CANCEL_TEXT)) { _, _ ->
             Toast.makeText(
