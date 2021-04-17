@@ -2,6 +2,7 @@
 <resources>
     <dimen name="climate_image_height">250dp</dimen>
     <dimen name="climate_top_margin">150dp</dimen>
+    <dimen name="climate_top_margin_100dp">100dp</dimen>
     <dimen name="climate_title_text_size">20sp</dimen>
     <dimen name="climate_publisher_text_size_15sp">15sp</dimen>
     <dimen name="climate_publisher_text_size">16sp</dimen>

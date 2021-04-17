@@ -2,67 +2,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     android:divider="#000000">
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:paddingStart="@dimen/normal_padding"
-            android:paddingEnd="@dimen/normal_padding"
-            android:layout_width="@dimen/climate_top_margin"
-            android:layout_height="@dimen/climate_top_margin"
-            android:src="@drawable/location"
-            android:contentDescription="@string/weatherIcon" />
-        <TextView
-            android:id="@+id/city_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/normal_padding"
-            android:layout_marginRight="@dimen/normal_padding"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/climate_publisher_text_size"
-            />
-        <TextView
-            android:id="@+id/maxTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/normal_padding"
-            android:layout_marginRight="@dimen/normal_padding"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/climate_publisher_text_size"
-            />
-        <TextView
-            android:id="@+id/minTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/normal_padding"
-            android:layout_marginRight="@dimen/normal_padding"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/climate_publisher_text_size"
-            />
-        <TextView
-            android:id="@+id/pressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/normal_padding"
-            android:layout_marginRight="@dimen/normal_padding"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/climate_publisher_text_size"
-            />
-        <TextView
-            android:id="@+id/humidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/normal_padding"
-            android:layout_marginRight="@dimen/normal_padding"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/climate_publisher_text_size"
-            />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/weatherIcon"
+                    android:layout_width="@dimen/climate_top_margin_100dp"
+                    android:layout_height="@dimen/climate_top_margin_100dp"
+                    android:contentDescription="@string/weatherIcon"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/weatherIcon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/city_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/climate_publisher_text_size"
+                    />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/city_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/maxTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/normal_padding"
+                    android:layout_marginRight="@dimen/normal_padding"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/climate_publisher_text_size"
+                    />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/maxTemp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/minTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/normal_padding"
+                    android:layout_marginRight="@dimen/normal_padding"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/climate_publisher_text_size"
+                    />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/minTemp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/normal_padding"
+                    android:layout_marginRight="@dimen/normal_padding"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/climate_publisher_text_size"
+                    />
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@id/pressure"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/normal_padding"
+                    android:layout_marginRight="@dimen/normal_padding"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/climate_publisher_text_size"
+                    />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

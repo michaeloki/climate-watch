@@ -36,7 +36,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="n">
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
