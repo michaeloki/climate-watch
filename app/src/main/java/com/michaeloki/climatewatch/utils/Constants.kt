@@ -3,7 +3,7 @@ package com.michaeloki.climatewatch.utils
 object Constants {
     const val BASE_URL = "https://api.openweathermap.org/"
     const val NETWORK_TIMEOUT = 3000
-    const val API_KEY = "53f9d8e4213222cf517d86dc406d67fc"
+    const val API_KEY = ""
     const val units = "metric"
     const val SUCCESS_RESULT = 0
     const val FAILURE_RESULT = 1
